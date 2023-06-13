@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { RegisterComponent } from './user-self-service/register/register.component';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { RouterModule } from '@angular/router';
       {path: 'home', component: WelcomeComponent},
       {path: '', redirectTo: 'home', pathMatch: 'full'},
       {path: 'register', component: RegisterComponent}
-    ])
+    ]),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

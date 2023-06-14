@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { RegisterUser } from './models/RegisterUser';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -9,10 +12,12 @@ import { FormBuilder } from '@angular/forms';
 export class RegisterComponent {
 
   registerForm;
+  registeredUser?: RegisterUser;
+  registerUrl = "http://localhost:4200/registerUser"
 
-  constructor(private formBuilder: FormBuilder){
+  constructor(private formBuilder: FormBuilder, private http: HttpClient){
     this.registerForm = this.formBuilder.group({
-      forenames: [""],
+      forenames: [],
       surname: [],
       emailAddress: [],
       telephone: [],
@@ -22,7 +27,15 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    console.log(this.registerForm.value);
+    this.registerUser(this.registerForm)
+        .subscribe(
+          result => {
+            console.log(result)
+          });
+  }
+
+  registerUser(form: FormGroup): Observable<RegisterUser>{
+    return this.http.post<RegisterUser>(this.registerUrl, form.value);
   }
 
 }

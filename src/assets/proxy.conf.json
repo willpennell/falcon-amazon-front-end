@@ -1,0 +1,10 @@
+{
+  "/registerUser": {
+    "target": "http://localhost:8080/api/user/create",
+    "secure": true,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/registerUser": ""
+    }
+  }
+}

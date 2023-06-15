@@ -58,6 +58,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "projectname:build",
+            "proxyConfig": "src/assets/proxy.conf.json"
+          },
           "configurations": {
             "production": {
               "browserTarget": "falcon-amazon-front-end:build:production"

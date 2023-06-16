@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { RegisterUser } from './models/RegisterUser';
+import { Response } from './models/RegisterUser';
 import { Observable } from 'rxjs';
+import { UserAPI } from '../userAPI.service';
 
 @Component({
   selector: 'app-register',
@@ -10,12 +11,12 @@ import { Observable } from 'rxjs';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-
+  
   registerForm;
-  registeredUser?: RegisterUser;
+  registeredUser?: Response;
   registerUrl = "http://localhost:4200/registerUser"
 
-  constructor(private formBuilder: FormBuilder, private http: HttpClient){
+  constructor(private formBuilder: FormBuilder, private userService: UserAPI){
     this.registerForm = this.formBuilder.group({
       forenames: [],
       surname: [],
@@ -27,15 +28,8 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    this.registerUser(this.registerForm)
-        .subscribe(
-          result => {
-            console.log(result)
-          });
-  }
-
-  registerUser(form: FormGroup): Observable<RegisterUser>{
-    return this.http.post<RegisterUser>(this.registerUrl, form.value);
+    
+    this.userService.createUser(this.registerForm).subscribe(result => {console.log(result); this.registeredUser = result});
   }
 
 }

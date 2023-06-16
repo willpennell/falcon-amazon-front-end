@@ -1,15 +1,15 @@
-export interface RegisterUser {
+export interface Response {
   success:   boolean;
-  response:  Response;
-  message:   null;
+  response:  User | null;
+  message:   string |null;
   timestamp: Date;
 }
 
-export interface Response {
+export interface User {
   userId:       number;
-  forenames:    null;
-  surname:      null;
+  forenames:    string | null;
+  surname:      string | null;
   emailAddress: string;
-  telephone:    null;
-  dateOfBirth:  null;
+  telephone:    string | null;
+  dateOfBirth:  string | null;
 }

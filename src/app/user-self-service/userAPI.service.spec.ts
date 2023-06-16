@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-
+import {} from 'jasmine';
 import { UserAPI } from './userAPI.service';
 import { FormGroup, ReactiveFormsModule, FormBuilder, FormControl } from '@angular/forms';
 import { Response } from './register/models/RegisterUser';

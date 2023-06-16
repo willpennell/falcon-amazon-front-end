@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing'; // Import HttpClientTestingModule
-
+import {} from 'jasmine';
 import { RegisterComponent } from './register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 

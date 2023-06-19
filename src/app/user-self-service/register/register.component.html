@@ -1,38 +1,96 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+<div class="container">
+ <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
 
-  <p>
-    <label for="forenames">Forenames</label>
-    <input type="text" id="forenames" name="forenames" formControlName="forenames">
-  </p>
+    <div>
+      <p>
+        <label for="forenames">Forenames</label>
+        <input type="text" id="forenames" name="forenames" formControlName="forenames">
+      </p>
 
-  <p>
-    <label for="surname">Surname</label>
-    <input type="text" id="surname" name="surname" formControlName="surname">
-  </p>
+      <div
+      *ngIf="registerForm.get('forenames')?.invalid &&
+            (registerForm.get('forenames')?.dirty || registerForm.get('forenames')?.touched)">
+            <div [hidden]="!registerForm.get('forenames')?.errors" class="alert alert-danger">
+              Forename(s) is required
+            </div>
+      </div>
+    </div>
 
-  <p>
-    <label for="emailAddress">Email</label>
-    <input type="text" id="emailAddress" name="emailAddress" formControlName="emailAddress">
-  </p>
+    <div>
+      <p>
+        <label for="surname">Surname</label>
+        <input type="text" id="surname" name="surname" formControlName="surname">
+      </p>
 
-  <p>
-    <label for="telephone">Telephone</label>
-    <input type="text" id="telephone" name="telephone" formControlName="telephone">
-  </p>
+      <div
+      *ngIf="registerForm.get('surname')?.invalid &&
+            (registerForm.get('surname')?.dirty || registerForm.get('surname')?.touched)">
+            <div [hidden]="!registerForm.get('surname')?.errors" class="alert alert-danger">
+              Surname is required
+            </div>
+      </div>
+    </div>
 
-  <p>
-    <label for="dateOfBirth">Date of birth</label>
-    <input type="date" id="dateOfBirth" name="dateOfBirth" formControlName="dateOfBirth">
-  </p>
+    <div>
+      <p>
+        <label for="emailAddress">Email</label>
+        <input type="text" id="emailAddress" name="emailAddress" formControlName="emailAddress">
+      </p>
+      <div
+      *ngIf="registerForm.get('emailAddress')?.invalid &&
+            (registerForm.get('emailAddress')?.dirty || registerForm.get('emailAddress')?.touched)">
+            <div [hidden]="!registerForm.get('emailAddress')?.errors" class="alert alert-danger">
+              Email is required
+            </div>
+      </div>
+    </div>
 
-  <p>
-    <label for="password">Password</label>
-    <input type="text" id="password" name="password" formControlName="password">
-  </p>
+    <div>
+      <p>
+        <label for="telephone">Telephone:</label>
+        <input type="text" id="telephone" name="telephone" formControlName="telephone">
+      </p>
+      <div
+      *ngIf="registerForm.get('telephone')?.invalid &&
+            (registerForm.get('telephone')?.dirty || registerForm.get('telephone')?.touched)">
+            <div [hidden]="!registerForm.get('telephone')?.errors" class="alert alert-danger">
+              Telephone is required
+            </div>
+      </div>
+    </div>
 
-  <p>
-    <button type="submit">Submit</button>
-  </p>
+    <div>
+      <p>
+        <label for="dateOfBirth">Date of birth</label>
+        <input type="date" id="dateOfBirth" name="dateOfBirth" formControlName="dateOfBirth">
+      </p>
+      <div
+      *ngIf="registerForm.get('dateOfBirth')?.invalid &&
+            (registerForm.get('dateOfBirth')?.dirty || registerForm.get('dateOfBirth')?.touched)">
+            <div [hidden]="!registerForm.get('dateOfBirth')?.errors" class="alert alert-danger">
+              Telephone is required
+            </div>
+      </div>
+    </div>
 
-  {{registerForm.value | json}}
-</form>
+    <div>
+      <p>
+        <label for="password">Password</label>
+        <input type="text" id="password" name="password" formControlName="password">
+      </p>
+      <div
+      *ngIf="registerForm.get('password')?.invalid &&
+            (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)">
+            <div [hidden]="!registerForm.get('password')?.errors" class="alert alert-danger">
+              Telephone is required
+            </div>
+      </div>
+    </div>
+
+    <p>
+      <button type="submit" [disabled]="registerForm.invalid">Submit</button>
+    </p>
+
+    {{registerForm.value | json}}
+  </form>
+</div>
